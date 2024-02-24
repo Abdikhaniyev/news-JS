@@ -1,4 +1,4 @@
-import { Callback, Method, Options } from ".";
+import { Callback, Method, Options } from '.';
 
 export interface LoaderInterface {
     baseLink?: string;
