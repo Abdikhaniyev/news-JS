@@ -1,14 +1,15 @@
 import { Callback, LoaderInterface, Method, Options } from '../../types';
 
 class Loader implements LoaderInterface {
-    constructor(baseLink?: string, options?: Options) {
+    public baseLink?: string;
+    public options?: Options;
+
+    public constructor(baseLink?: string, options?: Options) {
         this.baseLink = baseLink;
         this.options = options;
     }
-    baseLink?: string;
-    options?: Options;
 
-    getResp<T>(
+    public getResp<T>(
         { endpoint, options = {} }: { endpoint: string; options?: Options },
         callback: Callback<T> = () => {
             console.error('No callback for GET response');
@@ -17,7 +18,7 @@ class Loader implements LoaderInterface {
         this.load('GET', endpoint, callback, options);
     }
 
-    errorHandler(res: Response): Response {
+    public errorHandler(res: Response): Response {
         if (!res.ok) {
             if (res.status === 401 || res.status === 404)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -27,7 +28,7 @@ class Loader implements LoaderInterface {
         return res;
     }
 
-    makeUrl(options: Options, endpoint: string): string {
+    public makeUrl(options: Options, endpoint: string): string {
         const urlOptions: Options = { ...this.options, ...options };
         let url: string = `${this.baseLink}${endpoint}?`;
 
@@ -38,7 +39,7 @@ class Loader implements LoaderInterface {
         return url.slice(0, -1);
     }
 
-    load<T>(method: Method, endpoint: string, callback: Callback<T>, options: Options = {}): void {
+    public load<T>(method: Method, endpoint: string, callback: Callback<T>, options: Options = {}): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

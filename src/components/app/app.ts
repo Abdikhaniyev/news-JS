@@ -3,14 +3,15 @@ import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
 
 class App implements AppInterface {
-    constructor() {
+    public controller: ControllerInterface;
+    public view: AppViewInterface;
+
+    public constructor() {
         this.controller = new AppController();
         this.view = new AppView();
     }
-    controller: ControllerInterface;
-    view: AppViewInterface;
 
-    start(): void {
+    public start(): void {
         const sourcesContainer: HTMLDivElement | null = document.querySelector<HTMLDivElement>('.sources');
         if (sourcesContainer) {
             sourcesContainer.addEventListener('click', (e: Event) =>

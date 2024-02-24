@@ -2,7 +2,7 @@ import { Callback, ControllerInterface, NewsResult, SourceResult } from '../../t
 import AppLoader from './appLoader';
 
 class AppController extends AppLoader implements ControllerInterface {
-    getSources(callback: Callback<SourceResult>): void {
+    public getSources(callback: Callback<SourceResult>): void {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -11,7 +11,7 @@ class AppController extends AppLoader implements ControllerInterface {
         );
     }
 
-    getNews(e: Event, callback: Callback<NewsResult>): void {
+    public getNews(e: Event, callback: Callback<NewsResult>): void {
         let target: HTMLDivElement = e.target as HTMLDivElement;
         const newsContainer: HTMLDivElement = e.currentTarget as HTMLDivElement;
 

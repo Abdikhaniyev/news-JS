@@ -36,9 +36,34 @@ export interface SourceItem {
     country: string;
 }
 
-type SearchIn = 'title' | 'description' | 'content';
-type Language = 'ar' | 'de' | 'en' | 'es' | 'fr' | 'he' | 'it' | 'nl' | 'no' | 'pt' | 'ru' | 'sv' | 'ud' | 'zh';
-type SortBy = 'relevancy' | 'popularity' | 'publishedAt';
+enum SearchIn {
+    Title = 'title',
+    Description = 'description',
+    Content = 'content',
+}
+
+enum Language {
+    Arabic = 'ar',
+    German = 'de',
+    English = 'en',
+    Spanish = 'es',
+    French = 'fr',
+    Hebrew = 'he',
+    Italian = 'it',
+    Dutch = 'nl',
+    Norwegian = 'no',
+    Portuguese = 'pt',
+    Russian = 'ru',
+    Swedish = 'sv',
+    Urdu = 'ud',
+    Chinese = 'zh',
+}
+
+enum SortBy {
+    Relevancy = 'relevancy',
+    Popularity = 'popularity',
+    PublishedAt = 'publishedAt',
+}
 
 export interface Options {
     apiKey?: string;
